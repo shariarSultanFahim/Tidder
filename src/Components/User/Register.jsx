@@ -150,7 +150,8 @@ useEffect(()=>{
         </div>
         <Button type="submit">Register</Button>
       </form>
-    </Card>
+      </Card>
+      
     <div><Toaster position="top-right"/></div>
       
     </div>

@@ -8,6 +8,12 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/User/Login";
 import Register from "./Components/User/Register";
 import AuthProvider from "./Components/AuthProvider/AuthProvider";
+import AddBlogs from "./Components/AddBlogs/AddBlogs";
+import AllBlogs from "./Components/AllBlogs/AllBlogs";
+import FeaturedBlogs from "./Components/FeaturedBlogs/FeaturedBlogs";
+import WishList from "./Components/WishList/WishList";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Profile from "./Components/User/Profile";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +33,26 @@ const router = createBrowserRouter([
         path: '/register',
         element:<Register/>
       },
+      {
+        path: '/profile',
+        element:<PrivateRoute><Profile/></PrivateRoute>
+      },
+      {
+        path: '/addblogs',
+        element:<PrivateRoute><AddBlogs/></PrivateRoute>
+      },
+      {
+        path:'/allblogs',
+        element:<AllBlogs/>
+      },
+      {
+        path:'/featuredblogs',
+        element: <FeaturedBlogs/>
+      },
+      {
+        path:'/wishlist',
+        element:<PrivateRoute><WishList/></PrivateRoute>
+      }
     ]
   },
 ]);
