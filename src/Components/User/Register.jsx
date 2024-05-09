@@ -1,14 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import Lottie from "react-lottie";
 import animationData from "../../assets/LoginAnimation.json";
-import { Button, Card,Label, TextInput } from "flowbite-react";
+import { Button, Card,TextInput } from "flowbite-react";
 import { AiOutlineEye ,AiOutlineEyeInvisible } from "react-icons/ai";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import {toast, Toaster} from "react-hot-toast"
+import { updateProfile } from "firebase/auth";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
   useDocumentTitle(useLocation().pathname.slice(1));
+
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -17,6 +20,16 @@ const Register = () => {
       preserveAspectRatio: "xMidYMid slice",
     },
   };
+
+  const location = useLocation()
+  const navigate = useNavigate()
+
+    if(location.state === null){
+        location.state = '/';
+    }
+
+  const {registerUser,user, setUser} = useContext(AuthContext)
+
   const [passVisibility,setPassVisibility] = useState(false);
 
     const handlePassVisibility = () =>{
@@ -65,9 +78,27 @@ const formRef = useRef(null);
     }
     
     setError('');
-    formRef.current.reset();
 
+    registerUser(email,password)
+        .then(result=>{
+            updateProfile(result.user,{
+                displayName:name,
+                photoURL:photoURL
+            });
+            setUser(result.user);
+            toast.success("Registration Successful!");
+            formRef.current.reset();
+        })  
+        .catch(error=> setError(error.message));
 }
+
+useEffect(()=>{
+    if(user){
+        setTimeout(()=>{
+            navigate(location.state);
+        },1000); 
+    }
+},[user]); 
 
   return (
     <div className="min-h-screen md:flex justify-between items-center mx-auto">

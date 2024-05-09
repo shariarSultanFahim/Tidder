@@ -6,23 +6,25 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import {toast, Toaster} from "react-hot-toast"
 import { AiOutlineEye ,AiOutlineEyeInvisible } from "react-icons/ai";
-import { useState } from "react";
-import { Button, Card, Checkbox, Label, TextInput } from "flowbite-react";
+import { useContext, useEffect, useState } from "react";
+import { Button, Card,Label, TextInput } from "flowbite-react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 
 const Login = () => {
   useDocumentTitle(useLocation().pathname.slice(1));
   
   const [passVisibility,setPassVisibility] = useState(false);
-
+  const {loginUser, googleLogin, githubLogin, setUser, user} = useContext(AuthContext)
   const handlePassVisibility = () =>{
     setPassVisibility(!passVisibility);
   }
 
+  const location = useLocation()
   const navigate = useNavigate()
 
     if(location.state === null){
-        location.state = '/profile';
+        location.state = '/';
     }
 
   const defaultOptions = {
@@ -38,26 +40,52 @@ const Login = () => {
  
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log(email,password)
+    
+    loginUser(email,password)
+        .then(result =>{
+            toast.success('Logged in sucessfully!');
+        })
+        .catch((error) =>{
+            toast.error(error.code);
+        })
   }
   const handleGoogleLogin = () =>{
-    console.log('google')
-  }
-  const handleGithubLogin = () =>{
-    console.log('github')
-
-  }
+    googleLogin()
+    .then(result =>{
+        setUser(result.user)
+        toast.success('Logged in sucessfully!');
+    })  
+    .catch((error) =>{
+        toast.error(error.code);
+    })
+}
+const handleGithubLogin = () =>{
+    githubLogin()
+    .then(result =>{
+        setUser(result.user)
+        toast.success('Logged in sucessfully!')
+    })
+    .catch((error) =>{
+        toast.error(error.code);
+    })
+}
+useEffect(()=>{
+    if(user){
+        setTimeout(()=>{
+            navigate(location.state);
+        },1000); 
+    }
+},[user]);  
 
   return (
     <div className="min-h-screen md:flex justify-around items-center gap-8 mx-auto">
     <Card className="md:w-80 lg:w-96 mx-auto">
-      <form onSubmit={handleLogin} className="flex flex-col gap-4">
 
-        <div className='text-center'>
+    <div className='text-center'>
             <button onClick={handleGoogleLogin} className='p-4 text-3xl'><FcGoogle/></button>
-            <button onClick={handleGithubLogin } className='p-4 text-3xl'><AiFillGithub/></button>
-         </div>
-
+            <button onClick={handleGithubLogin} className='p-4 text-3xl'><AiFillGithub/></button>
+    </div>
+      <form onSubmit={handleLogin} className="flex flex-col gap-4">
          <div className="flex">
             <div className="w-full border-t border-black"></div>
             <div className="-mt-3 px-2">OR</div>
