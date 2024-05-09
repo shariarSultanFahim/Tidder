@@ -5,6 +5,8 @@ import "./index.css";
 import Error from "./Components/Error/Error";
 import Root from "./Components/Root/Root";
 import Home from "./Components/Home/Home";
+import Login from "./Components/User/Login";
+import Register from "./Components/User/Register";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +17,15 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home/>
-      }
+      },
+      {
+        path: '/login',
+        element:<Login/>
+      },
+      {
+        path: '/register',
+        element:<Register/>
+      },
     ]
   },
 ]);
