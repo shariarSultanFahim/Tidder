@@ -2,10 +2,10 @@
 
 const Home = () => {
     return (
-        <div>
+        <div className="min-h-screen">
           Home  
         </div>
     );
 };
 
-export default Home;Home
+export default Home;
