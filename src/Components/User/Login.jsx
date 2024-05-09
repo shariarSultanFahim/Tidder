@@ -91,7 +91,7 @@ const Login = () => {
         </div>
         <Button type="submit">Login</Button>
       </form>
-        </Card>
+    </Card>
 
       <div className="hidden md:block w-1/2">
         <Lottie options={defaultOptions} height={400} width={400} />
