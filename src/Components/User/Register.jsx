@@ -87,7 +87,18 @@ const formRef = useRef(null);
                 photoURL:photoURL
             });
             setUser(result.user);
-            toast.success("Registration Successful!");
+            toast.success("Registration Successful!",{
+              position:"top-center",
+              style: {
+                border: '1px solid #0E7490',
+                padding: '16px',
+                color: '#0E7490',
+              },
+              iconTheme: {
+                primary: '#0E7490',
+                secondary: '#E5F9FF',
+              },
+            });
             formRef.current.reset();
         })  
         .catch(error=> setError(error.message));

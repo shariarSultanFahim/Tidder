@@ -21,7 +21,7 @@ const AllBlogs = () => {
     return (
         <section>
              
-            <div className="container mx-auto my-10 flex items-center justify-center">
+            <div className="container mx-auto pt-16 pb-10 flex items-center justify-center">
                 <div className="max-w-md">
                     <Select id="categories" onChange={(e) => handleFilter(e.target.value)}>
                         <option>All Categories</option>
@@ -36,7 +36,7 @@ const AllBlogs = () => {
                 <input
                     type="search"
                     name="search"
-                    className="relative m-0 block flex-auto rounded border border-solid border-neutral-200 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+                    className="relative m-0 block flex-auto rounded border border-solid  bg-gray-600 bg-opacity-10 bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none "
                     placeholder="Search"
                     aria-label="Search"/>
                 <button type="submit"
@@ -57,7 +57,7 @@ const AllBlogs = () => {
                 </form>
             </div>
 
-            <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
+            <div className="pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
             {
                 blogs?
                 blogs.map(blog => <BlogCard key={blog._id} blog={blog} />)

@@ -43,30 +43,96 @@ const Login = () => {
     
     loginUser(email,password)
         .then(result =>{
-            toast.success('Logged in sucessfully!');
+            toast.success('Logged in sucessfully!',{
+              position:"top-center",
+              style: {
+                border: '1px solid #0E7490',
+                padding: '16px',
+                color: '#0E7490',
+              },
+              iconTheme: {
+                primary: '#0E7490',
+                secondary: '#E5F9FF',
+              },
+            });
         })
         .catch((error) =>{
-            toast.error(error.code);
+            toast.error(error.code,{
+              position:"top-center",
+              style: {
+                border: '1px solid #0E7490',
+                padding: '16px',
+                color: '#0E7490',
+              },
+              iconTheme: {
+                primary: '#0E7490',
+                secondary: '#E5F9FF',
+              },
+            });
         })
   }
   const handleGoogleLogin = () =>{
     googleLogin()
     .then(result =>{
         setUser(result.user)
-        toast.success('Logged in sucessfully!');
+        toast.success('Logged in sucessfully!',{
+          position:"top-center",
+          style: {
+            border: '1px solid #0E7490',
+            padding: '16px',
+            color: '#0E7490',
+          },
+          iconTheme: {
+            primary: '#0E7490',
+            secondary: '#E5F9FF',
+          },
+        });
     })  
     .catch((error) =>{
-        toast.error(error.code);
+        toast.error(error.code,{
+          position:"top-center",
+          style: {
+            border: '1px solid #0E7490',
+            padding: '16px',
+            color: '#0E7490',
+          },
+          iconTheme: {
+            primary: '#0E7490',
+            secondary: '#E5F9FF',
+          },
+        });
     })
 }
 const handleGithubLogin = () =>{
     githubLogin()
     .then(result =>{
         setUser(result.user)
-        toast.success('Logged in sucessfully!')
+        toast.success('Logged in sucessfully!',{
+          position:"top-center",
+          style: {
+            border: '1px solid #0E7490',
+            padding: '16px',
+            color: '#0E7490',
+          },
+          iconTheme: {
+            primary: '#0E7490',
+            secondary: '#E5F9FF',
+          },
+        })
     })
     .catch((error) =>{
-        toast.error(error.code);
+        toast.error(error.code,{
+          position:"top-center",
+          style: {
+            border: '1px solid #0E7490',
+            padding: '16px',
+            color: '#0E7490',
+          },
+          iconTheme: {
+            primary: '#0E7490',
+            secondary: '#E5F9FF',
+          },
+        });
     })
 }
 useEffect(()=>{

@@ -9,7 +9,8 @@ const Profile = () => {
 
     const {user} = useContext(AuthContext)
     return (
-        <div className="lg:my-28 p-10 flex flex-col md:flex-row gap-8 md:gap-2 justify-between items-center shadow-2xl">
+        <div className="py-8 md:py-16 lg:py-28 ">
+            <div className="p-10 flex flex-col md:flex-row gap-8 md:gap-2 justify-between items-center shadow-2xl rounded-lg bg-secondary bg-opacity-50 w-[90%] md:w-10/12 lg:w-3/4 mx-auto">
             <div className="md:w-1/2 grid place-items-center">
                 <div className="h-40 w-40 rounded-full overflow-hidden">
                     <img className="h-full w-full" src={user.photoURL}/>
@@ -31,6 +32,7 @@ const Profile = () => {
                     <h1>{user.metadata.lastSignInTime}</h1>
                     <h1>{user.metadata.creationTime}</h1>
                 </div>
+            </div>
             </div>
         </div>
     );

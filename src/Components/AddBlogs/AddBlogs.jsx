@@ -3,24 +3,55 @@ import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { Button, Card,Label, TextInput } from "flowbite-react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { motion } from "framer-motion"
+import axios from "axios";
+import {toast, Toaster} from "react-hot-toast"
 
 const AddBlogs = () => {
     useDocumentTitle('Add Blogs');
 
     const {user} = useContext(AuthContext)
 
-    const handleAddBlog = (e) =>{
+    const handleAddBlog = async(e) =>{
         e.preventDefault();
         const title = e.target.title.value;
         const photo = e.target.image.value;
-        const catagory = e.target.catagory.value;
+        const category = e.target.catagory.value;
         const shortDescription = e.target.shortDescription.value;
         const longDescription = e.target.longDescription.value;
+        const wordCount = longDescription.length;
         const userName = user.displayName;
         const email = user.email;
-        const blog = {title,photo,catagory,shortDescription,longDescription,userName,email}
+        const profile_img = user.photoURL;
+        const blog = {
+            title:title,
+            image_url:photo,
+            category:category,
+            short_description:shortDescription,
+            long_description:longDescription,
+            wordCount:wordCount,
+            userName:userName,
+            email:email,
+            profile_img:profile_img
+        }
         console.log(blog)
-
+        try{
+            const res = await axios.post("http://localhost:5000/blogs",blog);
+            e.target.reset();
+            toast.success('Blog Posted Sucessfully!',{
+                position:"top-center",
+                style: {
+                  border: '1px solid #0E7490',
+                  padding: '16px',
+                  color: '#0E7490',
+                },
+                iconTheme: {
+                  primary: '#0E7490',
+                  secondary: '#E5F9FF',
+                },
+              })
+        }catch(error){
+            console.log(error);
+        }
 
     }
 
@@ -32,8 +63,8 @@ const AddBlogs = () => {
             duration:"1",
           delay:"0"
         }}
-        className="w-[98%] md:w-full mx-auto min-h-screen my-10">
-        <Card className="w-full mx-auto">
+        className="w-[98%] md:w-full mx-auto min-h-screen p-10">
+        <Card className="w-full mx-auto bg-secondary bg-opacity-50">
             <form onSubmit={handleAddBlog} className="flex flex-col gap-4">
                 <h1 className="text-center md:text-3xl lg:text-5xl text-primary">Add Blog</h1>
                 
@@ -79,6 +110,7 @@ const AddBlogs = () => {
                 <Button type="submit">Add Blog</Button>
             </form>
         </Card>
+        <div><Toaster position="top-right"/></div>
         </motion.div>
     );
 };

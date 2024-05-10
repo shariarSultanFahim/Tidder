@@ -8,6 +8,8 @@ import {
   signOut,
 } from "firebase/auth";
 import {auth} from '../Firebase/Firebase.init'
+import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 
@@ -49,15 +51,13 @@ const githubLogin = () =>{
   }, []);
 
   // Fetching BLOG API
-  const [blogs, setBlogs] = useState([]);
+  const [blogs, setBlogs] = useState(null);
+  const axiosSecure = useAxiosSecure();
+
   useEffect(()=>{
-    const fetchData = async()=>{
-      const res = await fetch('Blog.json');
-      const data = await res.json();
-      setBlogs(data);
-    };
-    fetchData();
-  }, []);
+    axiosSecure.get('/blogs')
+    .then(res => setBlogs(res.data))
+  });  
 
   const authInfo = {
     user,
