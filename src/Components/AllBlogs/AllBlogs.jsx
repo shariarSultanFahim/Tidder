@@ -2,7 +2,7 @@ import { useContext } from "react";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import BlogCard from "../BlogCard/BlogCard";
-import { Label, Select } from "flowbite-react";
+import {  Select } from "flowbite-react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
@@ -20,11 +20,12 @@ const AllBlogs = () => {
     }
     return (
         <section>
+             
             <div className="my-10 flex items-center justify-center">
                 <div className="max-w-md">
                     <Select id="categories" onChange={(e) => handleFilter(e.target.value)}>
                         <option>All Categories</option>
-                        <option >Technology</option>
+                        <option>Technology</option>
                         <option>Lifestyle</option>
                         <option>Food</option>
                         <option>Travel</option>

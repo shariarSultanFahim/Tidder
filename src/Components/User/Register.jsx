@@ -8,6 +8,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {toast, Toaster} from "react-hot-toast"
 import { updateProfile } from "firebase/auth";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { motion } from "framer-motion"
 
 const Register = () => {
   useDocumentTitle(useLocation().pathname.slice(1));
@@ -101,7 +102,14 @@ useEffect(()=>{
 },[]); 
 
   return (
-    <div className="min-h-screen md:flex justify-between items-center mx-auto">
+    <motion.div
+    initial={{opacity: 0, x:-1000}}
+    animate={{opacity: 100, x: 0}}
+    transition={{
+      duration:"2",
+      delay:"0"
+    }}
+    className="min-h-screen md:flex justify-between items-center mx-auto">
       <div className="hidden md:block">
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>
@@ -154,7 +162,7 @@ useEffect(()=>{
       
     <div><Toaster position="top-right"/></div>
       
-    </div>
+    </motion.div>
   );
 };
 

@@ -1,8 +1,8 @@
-
 import { useContext } from "react";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { Button, Card,Label, TextInput } from "flowbite-react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { motion } from "framer-motion"
 
 const AddBlogs = () => {
     useDocumentTitle('Add Blogs');
@@ -24,8 +24,16 @@ const AddBlogs = () => {
 
 
     }
+
     return (
-        <div className="min-h-screen">
+        <motion.div
+        initial = {{y:100}}
+        animate = {{y:0}}
+        transition={{
+            duration:"1",
+          delay:"0"
+        }}
+        className="min-h-screen my-10">
         <Card className="w-full mx-auto">
             <form onSubmit={handleAddBlog} className="flex flex-col gap-4">
                 <h1 className="text-center md:text-3xl lg:text-5xl text-primary">Add Blog</h1>
@@ -72,7 +80,7 @@ const AddBlogs = () => {
                 <Button type="submit">Add Blog</Button>
             </form>
         </Card>
-        </div>
+        </motion.div>
     );
 };
 

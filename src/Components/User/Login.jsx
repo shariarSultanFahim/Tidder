@@ -9,7 +9,7 @@ import { AiOutlineEye ,AiOutlineEyeInvisible } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
 import { Button, Card,Label, TextInput } from "flowbite-react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-
+import { motion } from "framer-motion"
 
 const Login = () => {
   useDocumentTitle(useLocation().pathname.slice(1));
@@ -78,7 +78,14 @@ useEffect(()=>{
 },[user]);  
 
   return (
-    <div className="min-h-screen md:flex justify-around items-center gap-8 mx-auto">
+    <motion.div 
+    initial={{opacity: 0, x:1000}}
+    animate={{opacity: 100, x: 0}}
+    transition={{
+      duration:"2",
+      delay:"0"
+    }}
+    className="min-h-screen md:flex justify-around items-center gap-8 mx-auto">
     <Card className="md:w-80 lg:w-96 mx-auto">
 
     <div className='text-center'>
@@ -125,7 +132,7 @@ useEffect(()=>{
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>
       <div><Toaster position="top-right"/></div>
-    </div>
+    </motion.div>
   );
 };
 
