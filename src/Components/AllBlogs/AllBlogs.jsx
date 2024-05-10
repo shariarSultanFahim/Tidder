@@ -21,7 +21,7 @@ const AllBlogs = () => {
     return (
         <section>
              
-            <div className="my-10 flex items-center justify-center">
+            <div className="container mx-auto my-10 flex items-center justify-center">
                 <div className="max-w-md">
                     <Select id="categories" onChange={(e) => handleFilter(e.target.value)}>
                         <option>All Categories</option>
@@ -57,7 +57,7 @@ const AllBlogs = () => {
                 </form>
             </div>
 
-            <div className="my-10 min-h-screen grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start gap-6">
+            <div className="my-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
             {
                 blogs?
                 blogs.map(blog => <BlogCard key={blog._id} blog={blog} />)

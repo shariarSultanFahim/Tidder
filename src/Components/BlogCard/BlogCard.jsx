@@ -21,7 +21,7 @@ const BlogCard = ({ blog }) => {
       }}
       
       >
-        <Card className="max-w-sm h-[500px]"
+        <Card className="w-[98%] mx-auto md:max-w-md h-[510px]"
      imgSrc={blog.image_url}>
       <motion.div 
       initial={{opacity: 0, y:100}}

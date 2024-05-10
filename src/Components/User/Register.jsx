@@ -109,11 +109,11 @@ useEffect(()=>{
       duration:"2",
       delay:"0"
     }}
-    className="min-h-screen md:flex justify-between items-center mx-auto">
-      <div className="hidden md:block">
+    className="min-h-screen py-10 md:flex justify-between items-center mx-auto ">
+      <div className="hidden md:grid place-content-center">
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>
-      <Card className="md:w-80 lg:w-96 mx-auto">
+      <Card className="md:w-80 lg:w-96 mx-auto  bg-secondary">
       <form onSubmit={handleRegister} ref={formRef} className="flex flex-col gap-4">
         
         <div>

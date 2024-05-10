@@ -21,9 +21,11 @@ const Root = () => {
     return (
         <>
         <ScrollRestoration/>
-        <div className="container mx-auto w-[98%] md:w-full">
+        <div className="bg-primary">
             <Nav/>
-            <Outlet/>
+        </div>
+        <div className="bg-secondary bg-opacity-30">
+        <Outlet/>
         </div>
         <TidderFooter/>
         </>

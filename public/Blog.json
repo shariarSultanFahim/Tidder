@@ -53,5 +53,16 @@
     "blog_owner":"Shariar Sultan",
     "email":"shariarsfahim@gmail.com",
     "profile_img":"https://lh3.googleusercontent.com/a/ACg8ocLy7KUhiuNRw04X_KG6WQJzGEgY68OHSZyjf4ipQSEor_ENom0=s96-c"
+  },
+  {
+    "_id": 6,
+    "title": "The Rise of Automation: Friend or Foe?",
+    "image_url": "https://media.licdn.com/dms/image/D5612AQEANod2YKoLqw/article-cover_image-shrink_720_1280/0/1703713729358?e=2147483647&v=beta&t=R4xwM8T0ZzTUn-AKRV68-Lg2EpDK9H_5JIHVzH4Z69k",
+    "category": "Technology",
+    "short_description": "Explore the growing impact of automation on our lives, its potential benefits and challenges.",
+    "long_description": "This blog post delves into the fascinating world of automation. We'll discuss how automation is transforming various industries, the potential job displacement concerns, and the opportunities it presents for a more efficient future. We'll also explore ethical considerations and how we can ensure automation benefits everyone.",
+    "blog_owner":"Shariar Sultan",
+    "email":"shariarsfahim@gmail.com",
+    "profile_img":"https://lh3.googleusercontent.com/a/ACg8ocLy7KUhiuNRw04X_KG6WQJzGEgY68OHSZyjf4ipQSEor_ENom0=s96-c"
   }
 ]

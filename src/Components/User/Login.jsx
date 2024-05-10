@@ -85,8 +85,8 @@ useEffect(()=>{
       duration:"2",
       delay:"0"
     }}
-    className="min-h-screen md:flex justify-around items-center gap-8 mx-auto">
-    <Card className="md:w-80 lg:w-96 mx-auto">
+    className="min-h-screen py-10 md:flex justify-around items-center gap-8 mx-auto ">
+    <Card className="md:w-80 lg:w-96 mx-auto bg-secondary">
 
     <div className='text-center'>
             <button onClick={handleGoogleLogin} className='p-4 text-3xl'><FcGoogle/></button>
@@ -128,7 +128,7 @@ useEffect(()=>{
       </form>
     </Card>
 
-      <div className="hidden md:block w-1/2">
+      <div className="hidden md:grid place-content-center w-1/2">
         <Lottie options={defaultOptions} height={400} width={400} />
       </div>
       <div><Toaster position="top-right"/></div>

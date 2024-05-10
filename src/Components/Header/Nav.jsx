@@ -13,10 +13,10 @@ const Nav = () => {
     }
 
     return (
-        <Navbar fluid rounded>
+        <Navbar fluid rounded className="container mx-auto bg-primary">
         <Navbar.Brand href="/">
-          {/* <img src="#" className="mr-3 h-6 sm:h-9" alt="Logo" /> */}
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Tidder Blogs</span>
+          
+          <span className="self-center whitespace-nowrap text-xl font-semibold text-white">Tidder Blogs</span>
         </Navbar.Brand>
 
         {
@@ -39,23 +39,23 @@ const Nav = () => {
           <Navbar.Toggle />
           </div>
           :
-          <div className="flex md:order-2">
-            <Link to='/login' className="hover:underline hover:text-primary">Login</Link>
+          <div className="flex md:order-2 text-white">
+            <Link to='/login' className="hover:underline hover:text-secondary">Login</Link>
             <p>/</p>
-            <Link to='/register' className="hover:underline hover:text-primary">Register</Link>
+            <Link to='/register' className="hover:underline hover:text-secondary">Register</Link>
           </div>
         }
         
         <Navbar.Collapse>
-        <Navbar.Link><NavLink to={"/"} className={({ isActive }) => isActive ? 'px-3 py-2 bg-transparent text-primary  rounded-xl  ' : 'btn-ghost border-none bg-transparent hover:bg-transparent px-3 py-2 rounded-xl transition duration-300 ease-in-out hover:scale-110'}>Home</NavLink></Navbar.Link>
+        <Navbar.Link><NavLink to={"/"} className={({ isActive }) => isActive ? ' text-secondary  rounded-xl' : 'transition duration-300 ease-in-out text-white hover:text-secondary'}>Home</NavLink></Navbar.Link>
 
-        <Navbar.Link><NavLink to={"/addblogs"} className={({ isActive }) => isActive ? 'px-3 py-2 bg-transparent text-primary rounded-xl  ' : 'btn-ghost border-none bg-transparent hover:bg-transparent px-3 py-2 rounded-xl transition duration-300 ease-in-out hover:scale-110'}>Add Blog</NavLink></Navbar.Link>
+        <Navbar.Link><NavLink to={"/addblogs"} className={({ isActive }) => isActive ? ' text-secondary rounded-xl' : 'transition duration-300 ease-in-out text-white hover:text-secondary'}>Add Blog</NavLink></Navbar.Link>
 
-        <Navbar.Link><NavLink to={"/allblogs"} className={({ isActive }) => isActive ? 'px-3 py-2 bg-transparent text-primary rounded-xl  ' : 'btn-ghost border-none bg-transparent hover:bg-transparent px-3 py-2 rounded-xl transition duration-300 ease-in-out hover:scale-110'}>All Blog</NavLink></Navbar.Link>
+        <Navbar.Link><NavLink to={"/allblogs"} className={({ isActive }) => isActive ? ' text-secondary rounded-xl' : 'transition duration-300 ease-in-out text-white hover:text-secondary'}>All Blog</NavLink></Navbar.Link>
 
-        <Navbar.Link><NavLink to={"/featuredblogs"} className={({ isActive }) => isActive ? 'px-3 py-2 bg-transparent text-primary rounded-xl  ' : 'btn-ghost border-none bg-transparent hover:bg-transparent px-3 py-2 rounded-xl transition duration-300 ease-in-out hover:scale-110'}>Featured Blogs</NavLink></Navbar.Link>
+        <Navbar.Link><NavLink to={"/featuredblogs"} className={({ isActive }) => isActive ? ' text-secondary rounded-xl' : 'transition duration-300 ease-in-out text-white hover:text-secondary'}>Featured Blogs</NavLink></Navbar.Link>
 
-        <Navbar.Link><NavLink to={"/wishlist"} className={({ isActive }) => isActive ? 'px-3 py-2 bg-transparent text-primary rounded-xl  ' : 'btn-ghost border-none bg-transparent hover:bg-transparent px-3 py-2 rounded-xl transition duration-300 ease-in-out hover:scale-110'}>Wishlist</NavLink></Navbar.Link>
+        <Navbar.Link><NavLink to={"/wishlist"} className={({ isActive }) => isActive ? ' text-secondary rounded-xl' : 'transition duration-300 ease-in-out text-white hover:text-secondary'}>Wishlist</NavLink></Navbar.Link>
 
         </Navbar.Collapse>
         </Navbar>
