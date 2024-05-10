@@ -48,6 +48,17 @@ const githubLogin = () =>{
     };
   }, []);
 
+  // Fetching BLOG API
+  const [blogs, setBlogs] = useState([]);
+  useEffect(()=>{
+    const fetchData = async()=>{
+      const res = await fetch('Blog.json');
+      const data = await res.json();
+      setBlogs(data);
+    };
+    fetchData();
+  }, []);
+
   const authInfo = {
     user,
     setUser,
@@ -58,6 +69,7 @@ const githubLogin = () =>{
     googleLogin,
     githubLogin,
     logOut,
+    blogs
   };
 
   return (

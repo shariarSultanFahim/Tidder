@@ -98,7 +98,7 @@ useEffect(()=>{
             navigate(location.state);
         },1000); 
     }
-},[user]); 
+},[]); 
 
   return (
     <div className="min-h-screen md:flex justify-between items-center mx-auto">
