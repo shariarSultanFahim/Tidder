@@ -10,6 +10,7 @@ import {
 import {auth} from '../Firebase/Firebase.init'
 import axios from "axios";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 export const AuthContext = createContext(null);
 
@@ -61,13 +62,16 @@ const githubLogin = () =>{
   }, []);
 
   // Fetching BLOG API
-  const [blogs, setBlogs] = useState(null);
-  const axiosSecure = useAxiosSecure();
 
-  useEffect(()=>{
-    axiosSecure.get(`/blogs?email=${user.email}`)
-    .then(res => setBlogs(res.data))
-  });  
+  const axiosSecure = useAxiosSecure();
+  const fetchBlogs = () => {
+    return (axiosSecure.get('/blogs').then(res => res.data))
+  };
+  const {data:blogs} = useQuery({
+    queryKey: ['blogs'],
+    queryFn: fetchBlogs
+  })
+
 
   const authInfo = {
     user,

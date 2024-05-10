@@ -14,53 +14,69 @@ import FeaturedBlogs from "./Components/FeaturedBlogs/FeaturedBlogs";
 import WishList from "./Components/WishList/WishList";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Components/User/Profile";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root/>,
-    errorElement:<Error/>,
-    children:[
+    element: <Root />,
+    errorElement: <Error />,
+    children: [
       {
-        path: '/',
-        element: <Home/>
+        path: "/",
+        element: <Home />,
       },
       {
-        path: '/login',
-        element:<Login/>
+        path: "/login",
+        element: <Login />,
       },
       {
-        path: '/register',
-        element:<Register/>
+        path: "/register",
+        element: <Register />,
       },
       {
-        path: '/profile',
-        element:<PrivateRoute><Profile/></PrivateRoute>
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
-        path: '/addblogs',
-        element:<PrivateRoute><AddBlogs/></PrivateRoute>
+        path: "/addblogs",
+        element: (
+          <PrivateRoute>
+            <AddBlogs />
+          </PrivateRoute>
+        ),
       },
       {
-        path:'/allblogs',
-        element:<AllBlogs/>
+        path: "/allblogs",
+        element: <AllBlogs />,
       },
       {
-        path:'/featuredblogs',
-        element: <FeaturedBlogs/>
+        path: "/featuredblogs",
+        element: <FeaturedBlogs />,
       },
       {
-        path:'/wishlist',
-        element:<PrivateRoute><WishList/></PrivateRoute>
-      }
-    ]
+        path: "/wishlist",
+        element: (
+          <PrivateRoute>
+            <WishList />
+          </PrivateRoute>
+        ),
+      },
+    ],
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}/>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

@@ -1,6 +1,7 @@
 import axios from "axios";
+import { useContext, useEffect } from "react"
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tidder-server.vercel.app";
 
 const axiosSecure = axios.create({
     baseURL : BASE_URL,
