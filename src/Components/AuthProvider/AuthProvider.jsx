@@ -44,7 +44,7 @@ const githubLogin = () =>{
       if (currentUser) { 
         axiosSecure.post('/jwt',loggedUser)
         .then(res=>{
-          console.log('token response',res.data)
+          // console.log('token response',res.data)
         })
       } else {
         setUser('');
@@ -65,7 +65,7 @@ const githubLogin = () =>{
   const axiosSecure = useAxiosSecure();
 
   useEffect(()=>{
-    axiosSecure.get('/blogs')
+    axiosSecure.get(`/blogs?email=${user.email}`)
     .then(res => setBlogs(res.data))
   });  
 
