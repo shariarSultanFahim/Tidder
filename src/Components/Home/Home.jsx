@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import Divider from "./Divider";
+import Recentblogs from "./Recentblogs";
 
 const Home = () => {
 
@@ -10,7 +11,7 @@ const Home = () => {
 
           {/* Banner */}
           <div className="bg-primary relative">
-           <Divider/>
+           <Divider loc={"bottom"}/>
           <div className="container mx-auto w-full h-[550px] bg-primary 
           flex flex-col md:flex-row justify-between items-center">
             <div className="text-center pt-6 md:pt-0 md:text-left md:px-6 lg:px-12">
@@ -57,9 +58,7 @@ const Home = () => {
           </div>
           </div>
 
-          <div className="h-96 w-full">
-
-          </div>
+          <Recentblogs/>
 
           
         </div>
