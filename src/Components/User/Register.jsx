@@ -156,7 +156,11 @@ useEffect(()=>{
         <div className="flex items-center gap-2">
           <p>Already have an account? <span className="text-primary hover:underline"><Link to='/login'>Login</Link></span></p>
         </div>
-        <Button type="submit">Register</Button>
+        <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        type="submit"
+        className="w-full bg-primary py-2 rounded-xl">Register</motion.button>
       </form>
       </Card>
       

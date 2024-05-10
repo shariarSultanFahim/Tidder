@@ -18,7 +18,6 @@ const AddBlogs = () => {
         const longDescription = e.target.longDescription.value;
         const userName = user.displayName;
         const email = user.email;
-
         const blog = {title,photo,catagory,shortDescription,longDescription,userName,email}
         console.log(blog)
 

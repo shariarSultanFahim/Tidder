@@ -89,8 +89,14 @@ useEffect(()=>{
     <Card className="md:w-80 lg:w-96 mx-auto bg-secondary">
 
     <div className='text-center'>
-            <button onClick={handleGoogleLogin} className='p-4 text-3xl'><FcGoogle/></button>
-            <button onClick={handleGithubLogin} className='p-4 text-3xl'><AiFillGithub/></button>
+            <motion.button
+            whileHover={{ scale: 1.5 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleGoogleLogin} className='p-4 text-3xl'><FcGoogle/></motion.button>
+            <motion.button
+            whileHover={{ scale: 1.5 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={handleGithubLogin} className='p-4 text-3xl'><AiFillGithub/></motion.button>
     </div>
       <form onSubmit={handleLogin} className="flex flex-col gap-4">
          <div className="flex">
@@ -124,7 +130,11 @@ useEffect(()=>{
         <div className="flex items-center gap-2">
           <p>New to our site? <span className="text-primary hover:underline"><Link to='/register'>Register</Link></span></p>
         </div>
-        <Button type="submit">Login</Button>
+        <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        type="submit"
+        className="w-full bg-primary py-2 rounded-xl">Login</motion.button>
       </form>
     </Card>
 

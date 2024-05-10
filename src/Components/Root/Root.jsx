@@ -25,7 +25,7 @@ const Root = () => {
             <Nav/>
         </div>
         <div className="bg-secondary bg-opacity-30">
-        <Outlet/>
+         <Outlet/>
         </div>
         <TidderFooter/>
         </>
