@@ -1,6 +1,7 @@
 import { motion } from "framer-motion"
 import Divider from "./Divider";
 import Recentblogs from "./Recentblogs";
+import Newslatter from "./Newslatter";
 
 const Home = () => {
 
@@ -59,6 +60,7 @@ const Home = () => {
           </div>
 
           <Recentblogs/>
+          <Newslatter/>
 
           
         </div>

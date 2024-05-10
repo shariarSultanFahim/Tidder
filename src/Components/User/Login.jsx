@@ -7,7 +7,7 @@ import { AiFillGithub } from "react-icons/ai";
 import {toast, Toaster} from "react-hot-toast"
 import { AiOutlineEye ,AiOutlineEyeInvisible } from "react-icons/ai";
 import { useContext, useEffect, useState } from "react";
-import { Button, Card,Label, TextInput } from "flowbite-react";
+import { Card,Label, TextInput } from "flowbite-react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { motion } from "framer-motion"
 
