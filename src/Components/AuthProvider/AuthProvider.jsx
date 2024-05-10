@@ -15,7 +15,7 @@ export const AuthContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState('');
   const [userLoading, setUserLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider()
   const githubProvider = new GithubAuthProvider()
@@ -38,10 +38,20 @@ const githubLogin = () =>{
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
+      const userEmail = currentUser?.email || user.email;
+      const loggedUser = {email: userEmail};
+      setUser(currentUser);
+      if (currentUser) { 
+        axiosSecure.post('/jwt',loggedUser)
+        .then(res=>{
+          console.log('token response',res.data)
+        })
       } else {
-        setUser(null);
+        setUser('');
+        axiosSecure.post('/logout',loggedUser)
+        .then(res =>{
+          
+        })
       }
       setUserLoading(false);
     });

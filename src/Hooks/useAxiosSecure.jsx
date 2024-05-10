@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:5000";
 
 const axiosSecure = axios.create({
     baseURL : BASE_URL,
-    // withCredentials: true
+    withCredentials: true
 });
 
 const useAxiosSecure = () => {
