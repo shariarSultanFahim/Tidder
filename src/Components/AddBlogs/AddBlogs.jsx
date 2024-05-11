@@ -5,10 +5,11 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import { motion } from "framer-motion"
 import axios from "axios";
 import {toast, Toaster} from "react-hot-toast"
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const AddBlogs = () => {
     useDocumentTitle('Add Blogs');
-
+    const axiosSecure = useAxiosSecure()
     const {user} = useContext(AuthContext)
 
     const handleAddBlog = async(e) =>{
@@ -33,9 +34,9 @@ const AddBlogs = () => {
             email:email,
             profile_img:profile_img
         }
-        console.log(blog)
         try{
-            const res = await axios.post("http://localhost:5000/blogs",blog);
+            axiosSecure.post('/blogs',blog);
+
             e.target.reset();
             toast.success('Blog Posted Sucessfully!',{
                 position:"top-center",
@@ -50,7 +51,9 @@ const AddBlogs = () => {
                 },
               })
         }catch(error){
-            console.log(error);
+            toast.error(error.message,{
+                position:"top-center"
+            })
         }
 
     }

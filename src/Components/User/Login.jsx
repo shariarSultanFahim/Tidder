@@ -58,16 +58,7 @@ const Login = () => {
         })
         .catch((error) =>{
             toast.error(error.code,{
-              position:"top-center",
-              style: {
-                border: '1px solid #0E7490',
-                padding: '16px',
-                color: '#0E7490',
-              },
-              iconTheme: {
-                primary: '#0E7490',
-                secondary: '#E5F9FF',
-              },
+              position:"top-center"
             });
         })
   }
@@ -90,16 +81,7 @@ const Login = () => {
     })  
     .catch((error) =>{
         toast.error(error.code,{
-          position:"top-center",
-          style: {
-            border: '1px solid #0E7490',
-            padding: '16px',
-            color: '#0E7490',
-          },
-          iconTheme: {
-            primary: '#0E7490',
-            secondary: '#E5F9FF',
-          },
+          position:"top-center"
         });
     })
 }
@@ -122,16 +104,7 @@ const handleGithubLogin = () =>{
     })
     .catch((error) =>{
         toast.error(error.code,{
-          position:"top-center",
-          style: {
-            border: '1px solid #0E7490',
-            padding: '16px',
-            color: '#0E7490',
-          },
-          iconTheme: {
-            primary: '#0E7490',
-            secondary: '#E5F9FF',
-          },
+          position:"top-center"
         });
     })
 }

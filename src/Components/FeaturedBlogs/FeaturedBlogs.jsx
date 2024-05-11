@@ -93,8 +93,8 @@ const FeaturedBlogs = () => {
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900">{blog.title}</Table.Cell>
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900">{blog.userName}</Table.Cell>
                     <Table.Cell>
-                      <div className="flex items-center justify-center">
-                        <img className="w-12 h-12 rounded-full" src={blog.profile_img} alt="Owner Picture" />
+                      <div className="w-12 h-12 mx-auto overflow-hidden rounded-full">
+                        <img className="w-full h-full" src={blog.profile_img} alt="Owner Picture"/>
                       </div>
                     </Table.Cell>
                 </Table.Row>

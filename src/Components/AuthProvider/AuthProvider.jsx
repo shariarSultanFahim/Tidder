@@ -7,7 +7,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
-import {auth} from '../Firebase/Firebase.init'
+import { auth } from "../Firebase/Firebase.init";
 import axios from "axios";
 import useAxiosSecure, { fetchBlogs } from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
@@ -16,10 +16,10 @@ export const AuthContext = createContext(null);
 const axiosSecure = useAxiosSecure();
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState("");
   const [userLoading, setUserLoading] = useState(true);
-  const googleProvider = new GoogleAuthProvider()
-  const githubProvider = new GithubAuthProvider()
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const registerUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -27,11 +27,11 @@ const AuthProvider = ({ children }) => {
   const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const googleLogin = () =>{
-    return signInWithPopup(auth,googleProvider)
+  const googleLogin = () => {
+    return signInWithPopup(auth, googleProvider);
   };
-const githubLogin = () =>{
-    return signInWithPopup(auth,githubProvider)
+  const githubLogin = () => {
+    return signInWithPopup(auth, githubProvider);
   };
   const logOut = () => {
     return signOut(auth);
@@ -40,19 +40,15 @@ const githubLogin = () =>{
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       const userEmail = currentUser?.email || user.email;
-      const loggedUser = {email: userEmail};
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
-      if (currentUser) { 
-        axiosSecure.post('/jwt',loggedUser)
-        .then(res=>{
+      if (currentUser) {
+        axiosSecure.post("/jwt", loggedUser).then((res) => {
           // console.log('token response',res.data)
-        })
+        });
       } else {
-        setUser('');
-        axiosSecure.post('/logout',loggedUser)
-        .then(res =>{
-          
-        })
+        setUser("");
+        axiosSecure.post("/logout", loggedUser).then((res) => {});
       }
       setUserLoading(false);
     });
@@ -63,11 +59,10 @@ const githubLogin = () =>{
 
   // Fetching BLOG API
 
-  const {data:blogs} = useQuery({
-    queryKey: ['blogs'],
-    queryFn: fetchBlogs
-  })
-
+  const { data: blogs } = useQuery({
+    queryKey: ["blogs"],
+    queryFn: fetchBlogs,
+  });
 
   const authInfo = {
     user,
@@ -79,7 +74,7 @@ const githubLogin = () =>{
     googleLogin,
     githubLogin,
     logOut,
-    blogs
+    blogs,
   };
 
   return (

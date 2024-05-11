@@ -47,7 +47,6 @@ const formRef = useRef(null);
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    console.log(name,photoURL,email,password)
 
     if(password.length==0){
         setError("Enter a valid password");
@@ -110,7 +109,7 @@ useEffect(()=>{
             navigate(location.state);
         },1000); 
     }
-},[]); 
+},[user]); 
 
   return (
     <motion.div
