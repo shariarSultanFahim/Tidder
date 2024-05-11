@@ -63,7 +63,7 @@ const AddBlogs = () => {
             duration:"1",
           delay:"0"
         }}
-        className="w-[98%] md:w-full mx-auto min-h-screen p-10">
+        className="w-[98%] md:w-full mx-auto md:min-h-screen p-10">
         <Card className="w-full mx-auto bg-secondary bg-opacity-50">
             <form onSubmit={handleAddBlog} className="flex flex-col gap-4">
                 <h1 className="text-center md:text-3xl lg:text-5xl text-primary">Add Blog</h1>

@@ -4,6 +4,7 @@ import { AuthContext } from "../AuthProvider/AuthProvider";
 import BlogCard from "../BlogCard/BlogCard";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { Element} from 'react-scroll';
 
 const Recentblogs = () => {
    const {blogs} = useContext(AuthContext);
@@ -13,7 +14,8 @@ const Recentblogs = () => {
       <Divider loc={"top"} />
       <Divider loc={"bottom"} />
 
-      <div className="pt-12 container mx-auto bg-primary">
+      <Element id="recent-post"/>
+      <div id="recent-post" className="pt-12 container mx-auto bg-primary">
         <div className="text-white">
           <h1 className="text-center font-bold text-3xl md:text-4xl lg:text-5xl">
             Recent Posts

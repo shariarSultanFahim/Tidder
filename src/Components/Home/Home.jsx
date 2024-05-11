@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import Divider from "./Divider";
 import Recentblogs from "./Recentblogs";
 import Newslatter from "./Newslatter";
+import { Link,animateScroll as scroll } from 'react-scroll';
 
 const Home = () => {
 
@@ -34,6 +35,13 @@ const Home = () => {
               }}
               className="pt-4 pb-12 text-white opacity-70 text-sm md:text-xl font-thin">Dive into insightful blog posts covering a variety of topics. Find practical tips, thought-provoking ideas, and discover something new every day.</motion.p>
               
+              <Link
+              activeClass="active"
+              to="recent-post"
+              spy={true}
+              smooth={true}
+              offset={-50}
+              onClick={() => scroll.scrollTo({ id: 'recent-post' })}>
               <motion.button
               initial = {{y:1000}}
               animate = {{y:0}}
@@ -41,9 +49,13 @@ const Home = () => {
                 duration:"0.5",
                 delay:"3"
               }}
+              className=" bg-secondary text-primary font-bold shadow-2xl rounded-3xl px-4 py-2">Explore
+                
+              </motion.button>
               
               
-              className=" bg-secondary text-primary font-bold shadow-2xl rounded-3xl px-4 py-2">Explore</motion.button>
+              </Link>
+
             </div>
 
             <motion.div 
@@ -60,6 +72,7 @@ const Home = () => {
           </div>
 
           <Recentblogs/>
+
           <Newslatter/>
 
           

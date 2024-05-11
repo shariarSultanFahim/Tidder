@@ -14,9 +14,9 @@ export const fetchBlogs = () => {
     return (axiosSecure.get('/blogs').then(res => res.data))
 };
 
-export const fetchBlogsByCategory = (category) =>{
-    return (axiosSecure.get(`/blogs?category=${category}`))
-}
+export const fetchFeaturedBlogs = () => {
+    return (axiosSecure.get('/blogs/featured').then(res => res.data))
+};
 
 const useAxiosSecure = () => {
     return axiosSecure;

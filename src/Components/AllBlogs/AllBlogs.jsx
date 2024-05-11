@@ -5,21 +5,20 @@ import BlogCard from "../BlogCard/BlogCard";
 import {  Select } from "flowbite-react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure, { fetchBlogs, fetchBlogsByCategory } from "../../Hooks/useAxiosSecure";
-import axios from "axios";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 const AllBlogs = () => {
     useDocumentTitle('All Blogs');
     const {blogs} = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
     const [filterBlogs, setFilterBlogs] = useState(blogs);
 
     const handleSearch = async(e) =>{
         e.preventDefault();
         console.log(e.target.search.value);
-        const response = await axios.get(`https://tidder-server.vercel.app/blogs/search?search=${e.target.search.value}`);
-        setFilterBlogs(response.data)
+
+        axiosSecure.get(`/blogs/search?search=${e.target.search.value}`).then(response =>  setFilterBlogs(response.data));
     }
 
     const handleFilter = async(category) =>{
@@ -28,12 +27,10 @@ const AllBlogs = () => {
                 setFilterBlogs(blogs);
                 return;
             }
-        const response = await axios.get(`https://tidder-server.vercel.app/blogs/find?category=${category}`);
-        setFilterBlogs(response.data)
+            axiosSecure.get(`/blogs/find?category=${category}`).then(response =>  setFilterBlogs(response.data));
     }
     return (
-        <section>
-             
+        <section> 
             <div className="container mx-auto pt-16 pb-10 flex items-center justify-center">
                 <div className="max-w-md">
                     <Select id="categories" onChange={(e) => handleFilter(e.target.value)}>
