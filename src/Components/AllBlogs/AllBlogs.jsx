@@ -1,22 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import BlogCard from "../BlogCard/BlogCard";
 import {  Select } from "flowbite-react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure, { fetchBlogs, fetchBlogsByCategory } from "../../Hooks/useAxiosSecure";
+import axios from "axios";
 
 
 const AllBlogs = () => {
     useDocumentTitle('All Blogs');
     const {blogs} = useContext(AuthContext);
+    const [filterBlogs, setFilterBlogs] = useState(blogs);
 
-    const handleSearch = (e) =>{
+    const handleSearch = async(e) =>{
         e.preventDefault();
         console.log(e.target.search.value);
+        const response = await axios.get(`https://tidder-server.vercel.app/blogs/search?search=${e.target.search.value}`);
+        setFilterBlogs(response.data)
     }
-    const handleFilter = (category) =>{
-        console.log(category);
+
+    const handleFilter = async(category) =>{
+        if(category === "All Categories")
+            {
+                setFilterBlogs(blogs);
+                return;
+            }
+        const response = await axios.get(`https://tidder-server.vercel.app/blogs/find?category=${category}`);
+        setFilterBlogs(response.data)
     }
     return (
         <section>
@@ -59,8 +72,8 @@ const AllBlogs = () => {
 
             <div className="pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
             {
-                blogs?
-                blogs.map(blog => <BlogCard key={blog._id} blog={blog} />)
+                filterBlogs?
+                filterBlogs.map(blog => <BlogCard key={blog._id} blog={blog} />)
                 :
                 Array.from({ length: 3 }).map((blog, idx) => (
                     <div key={idx} className="max-w-sm ">

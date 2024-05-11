@@ -9,11 +9,11 @@ import {
 } from "firebase/auth";
 import {auth} from '../Firebase/Firebase.init'
 import axios from "axios";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosSecure, { fetchBlogs } from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 
 export const AuthContext = createContext(null);
-
+const axiosSecure = useAxiosSecure();
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState('');
@@ -63,10 +63,6 @@ const githubLogin = () =>{
 
   // Fetching BLOG API
 
-  const axiosSecure = useAxiosSecure();
-  const fetchBlogs = () => {
-    return (axiosSecure.get('/blogs').then(res => res.data))
-  };
   const {data:blogs} = useQuery({
     queryKey: ['blogs'],
     queryFn: fetchBlogs
