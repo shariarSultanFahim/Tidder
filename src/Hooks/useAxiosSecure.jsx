@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react"
 
 // http://localhost:5000
 // https://tidder-server.vercel.app
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://tidder-server.vercel.app";
 
 const axiosSecure = axios.create({
     baseURL : BASE_URL,
@@ -20,6 +20,10 @@ export const fetchFeaturedBlogs = () => {
 
 export const fetchBlogDetails = (id) =>{
     return (axiosSecure.get(`/blogs/details?id=${id}`).then(res => res.data));
+}
+
+export const fetchCommentByBlogId = (blogId) =>{
+    return (axiosSecure.get(`/comment?blogId=${blogId}`).then(res=>res.data));
 }
 
 const useAxiosSecure = () => {

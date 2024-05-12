@@ -15,8 +15,6 @@ const AllBlogs = () => {
     const {blogs, setBlogs} = useContext(AuthContext);
     const [filterBlogs, setFilterBlogs] = useState(blogs);
 
-    
-
     const handleSearch = async(e) =>{
         e.preventDefault();
 
