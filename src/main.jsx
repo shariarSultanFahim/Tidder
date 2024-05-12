@@ -16,6 +16,7 @@ import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Components/User/Profile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import BlogDetails from "./Components/AllBlogs/BlogDetails";
+import EditBlog from "./Components/AllBlogs/EditBlog";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -71,6 +72,12 @@ const router = createBrowserRouter([
       {
         path: '/details/:id',
         element: <BlogDetails/>
+      },
+      {
+        path: '/blogs/edit/:id',
+        element: <PrivateRoute>
+          <EditBlog/>
+          </PrivateRoute>
       }
     ],
   },

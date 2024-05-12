@@ -7,6 +7,9 @@ import { motion } from "framer-motion";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import { toast, Toaster } from "react-hot-toast";
+import Skeleton from 'react-loading-skeleton'
+import useDocumentTitle from "../../Hooks/useDocumentTitle";
+
 
 const BlogDetails = () => {
   const axiosSecure = useAxiosSecure();
@@ -25,6 +28,8 @@ const BlogDetails = () => {
     queryFn: () => fetchBlogDetails(id),
   });
 
+  useDocumentTitle(`${blog?.title}`);
+
 //   Comment not updating without refrashing the page in this methode
 //   const {data,isLoading:commentLoadind} = useQuery({
 //     queryKey: ["comments", blogId],
@@ -38,7 +43,16 @@ const BlogDetails = () => {
   
 
   if (isLoading) {
-    return <div>{isLoading}</div>;
+    return (
+        <div className="container mx-auto  pt-6 md:pt-12 space-y-6 min-h-screen p-4">
+            <div><Skeleton/></div>
+            <div className="w-full h-[450px] bg-[#F0F0F0]  rounded-lg overflow-hidden mx-auto ">
+            </div>
+            <div className="space-y-4 text-lg">
+                <h1><Skeleton count={10}/></h1>
+            </div>
+        </div>
+    )
   }
 
   const handleComment = async (e) => {
@@ -112,7 +126,7 @@ const BlogDetails = () => {
         <div className="flex items-center gap-2">
           {
             (user.email === blog.email) &&
-            <Link className="bg-green-500 px-2 rounded-lg text-white">Edit Blog</Link>
+            <Link to={`/blogs/edit/${id}`} className="bg-primary px-2 rounded-lg text-white">Edit Blog</Link>
           }
           <button className="text-3xl">
             <IoHeartOutline />

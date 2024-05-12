@@ -1,21 +1,43 @@
-import { useContext } from "react";
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
-import { Button, Card,Label, TextInput, Textarea } from "flowbite-react";
-import { AuthContext } from "../AuthProvider/AuthProvider";
-import { motion } from "framer-motion"
-import axios from "axios";
+import useAxiosSecure, { fetchBlogDetails } from "../../Hooks/useAxiosSecure";
 import {toast, Toaster} from "react-hot-toast"
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Button, Card,Label, Textarea, TextInput } from "flowbite-react";
+import { motion } from "framer-motion"
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import ReactLoading from 'react-loading';
 
-const AddBlogs = () => {
-    useDocumentTitle('Add Blogs');
-    const axiosSecure = useAxiosSecure()
 
-    const {user} = useContext(AuthContext)
+const EditBlog = () => {
 
-    const handleAddBlog = async(e) =>{
-        e.preventDefault();
-        const title = e.target.title.value;
+  const axiosSecure = useAxiosSecure();
+  const { id } = useParams();
+  const {user} = useContext(AuthContext);
+
+  const {
+    data: blog,
+    error,
+    isLoading,
+  } = useQuery({
+    queryKey: ["blogdetails", id],
+    queryFn: () => fetchBlogDetails(id),
+  });
+
+  useDocumentTitle(`Edit - ${blog?.title}`);
+
+  if(isLoading){
+    return (
+        <div className="min-h-screen grid place-items-center">
+            <ReactLoading type={'spinningBubbles'} color={'#0E7490'} height={100} width={100}/>
+        </div>
+        )
+  }
+
+  const handleEditBlog = (e) =>{
+    e.preventDefault();
+    const title = e.target.title.value;
         const photo = e.target.image.value;
         const category = e.target.catagory.value;
         const shortDescription = e.target.shortDescription.value;
@@ -24,7 +46,7 @@ const AddBlogs = () => {
         const userName = user.displayName;
         const email = user.email;
         const profile_img = user.photoURL;
-        const blog = {
+        const updatedData = {
             title:title,
             image_url:photo,
             category:category,
@@ -36,11 +58,10 @@ const AddBlogs = () => {
             profile_img:profile_img
         }
         try{
-            axiosSecure.post('/blogs',blog);
+            
+            axiosSecure.patch(`/blog/edit?id=${id}`,updatedData).then(res => console.log(res));
 
-            e.target.reset();
-
-            toast.success('Blog Posted Sucessfully!',{
+            toast.success('Blog Updated Sucessfully!',{
                 position:"top-center",
                 style: {
                   border: '1px solid #0E7490',
@@ -58,10 +79,10 @@ const AddBlogs = () => {
             })
         }
 
-    }
+  }
 
-    return (
-        <motion.div
+  return (
+    <motion.div
         initial = {{y:100}}
         animate = {{y:0}}
         transition={{
@@ -70,15 +91,15 @@ const AddBlogs = () => {
         }}
         className="w-[98%] md:w-full mx-auto md:min-h-screen p-10">
         <Card className="w-full mx-auto bg-secondary bg-opacity-50">
-            <form onSubmit={handleAddBlog} className="flex flex-col gap-4">
-                <h1 className="text-center md:text-3xl lg:text-5xl text-primary">Add Blog</h1>
+            <form onSubmit={handleEditBlog} className="flex flex-col gap-4">
+                <h1 className="text-center md:text-3xl lg:text-5xl text-primary">Edit Blog</h1>
                 
-                <div className="w-full flex flex-col md:flex-row gap-2 md:gap-4">
+                <div className="flex flex-col md:flex-row w-full gap-2 md:gap-4">
                     <div className="md:w-1/2">
                         <div className="mb-2 block">
                             <Label value="Blog Title" />
                         </div>
-                        <TextInput id="title" type="text" name="title" required />
+                        <TextInput defaultValue={`${blog.title}`} id="title" type="text" name="title" required />
                     </div>
                     <div className="md:w-1/2">
                         <div className="mb-2 block">
@@ -97,27 +118,27 @@ const AddBlogs = () => {
                     <div className="mb-2 block">
                         <Label value="Image URL" />
                     </div>
-                    <TextInput id="image" type="text" name="image" required />
+                    <TextInput defaultValue={`${blog.image_url}`} id="image" type="text" name="image" required />
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label value="Short Description" />
                     </div>
-                    <Textarea id="shortDescription" type="text" name="shortDescription" required />
+                    <Textarea defaultValue={`${blog.short_description}`} id="shortDescription" type="text" name="shortDescription" required />
                 </div>
                 <div>
                     <div className="mb-2 block">
                         <Label value="Long Description" />
                     </div>
-                    <Textarea id="longDescription" type="text" name="longDescription" required />
+                    <Textarea defaultValue={`${blog.long_description}`} id="longDescription" type="text" name="longDescription" required />
                 </div>
 
-                <Button type="submit">Add Blog</Button>
+                <Button type="submit">Submit</Button>
             </form>
         </Card>
         <div><Toaster position="top-right"/></div>
         </motion.div>
-    );
+  );
 };
 
-export default AddBlogs;
+export default EditBlog;

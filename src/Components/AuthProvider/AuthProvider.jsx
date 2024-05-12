@@ -80,8 +80,7 @@ const AuthProvider = ({ children }) => {
     loginUser,
     googleLogin,
     githubLogin,
-    logOut,
-    blogs
+    logOut
   };
 
   return (
