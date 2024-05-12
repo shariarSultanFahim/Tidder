@@ -58,13 +58,20 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   // Fetching BLOG API
+  const [blogs, setBlogs] = useState([]);
 
-  const { data: blogs } = useQuery({
-    queryKey: ["blogs"],
-    queryFn: fetchBlogs,
-  });
+  // const {data} = useQuery({
+  //   queryKey: ["blogs"],
+  //   queryFn: fetchBlogs
+  // });
+
+  useEffect(()=>{
+    axiosSecure.get('/blogs').then(res => setBlogs(res.data))
+  })
 
   const authInfo = {
+    blogs,
+    setBlogs,
     user,
     setUser,
     userLoading,
@@ -74,7 +81,7 @@ const AuthProvider = ({ children }) => {
     googleLogin,
     githubLogin,
     logOut,
-    blogs,
+    blogs
   };
 
   return (

@@ -1,22 +1,24 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import BlogCard from "../BlogCard/BlogCard";
 import {  Select } from "flowbite-react";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAxiosSecure, { fetchBlogs } from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 
 const AllBlogs = () => {
     useDocumentTitle('All Blogs');
-    const {blogs} = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+    const {blogs, setBlogs} = useContext(AuthContext);
     const [filterBlogs, setFilterBlogs] = useState(blogs);
+
+    
 
     const handleSearch = async(e) =>{
         e.preventDefault();
-        console.log(e.target.search.value);
 
         axiosSecure.get(`/blogs/search?search=${e.target.search.value}`).then(response =>  setFilterBlogs(response.data));
     }

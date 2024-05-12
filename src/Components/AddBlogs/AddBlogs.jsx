@@ -10,6 +10,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 const AddBlogs = () => {
     useDocumentTitle('Add Blogs');
     const axiosSecure = useAxiosSecure()
+
     const {user} = useContext(AuthContext)
 
     const handleAddBlog = async(e) =>{
@@ -38,6 +39,7 @@ const AddBlogs = () => {
             axiosSecure.post('/blogs',blog);
 
             e.target.reset();
+
             toast.success('Blog Posted Sucessfully!',{
                 position:"top-center",
                 style: {
