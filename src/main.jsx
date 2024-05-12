@@ -15,6 +15,7 @@ import WishList from "./Components/WishList/WishList";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
 import Profile from "./Components/User/Profile";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import BlogDetails from "./Components/AllBlogs/BlogDetails";
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: '/details/:id',
+        element: <BlogDetails/>
+      }
     ],
   },
 ]);

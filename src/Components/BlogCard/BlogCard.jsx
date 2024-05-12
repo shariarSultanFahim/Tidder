@@ -20,7 +20,7 @@ const BlogCard = ({ blog }) => {
           delay:"0"
       }}>
 
-      <div className="space-y-4 w-[98%] mx-auto md:max-w-md h-[510px] p-2 flex flex-col rounded-md shadow-2xl">
+      <div className="bg-white space-y-4 w-[98%] mx-auto md:max-w-md h-[510px] p-2 flex flex-col rounded-md shadow-2xl">
         <div className="h-1/2 w-full overflow-hidden rounded-t-md">
           <img className="h-full w-full" src={blog.image_url} alt="blog image" />
         </div>
@@ -35,7 +35,7 @@ const BlogCard = ({ blog }) => {
       className="flex justify-between items-center">
         <h1 className="px-4 bg-pink-600 text-white rounded-full">{blog.category}</h1>
         <div className="flex items-center gap-2">
-            <Link to='' className="px-4 bg-blue-600 text-white rounded-full">Details</Link>
+            <Link to={`/details/${blog._id}`} className="px-4 bg-blue-600 text-white rounded-full">Details</Link>
             <button className="text-3xl"><IoHeartOutline/></button>
             <button className="text-3xl text-red-700"><IoHeartSharp/></button>
         </div>
@@ -62,7 +62,7 @@ const BlogCard = ({ blog }) => {
         blog.short_description.split(' ').slice(0,30).join(' ')
         }
         <span>. . .</span>  <span className="hover:underline hover:text-blue-600">
-          <Link to='/'>Read More</Link>
+          <Link to={`/details/${blog._id}`} >Read More</Link>
           </span>
         </motion.p>
         </div>
