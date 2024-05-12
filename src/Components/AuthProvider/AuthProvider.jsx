@@ -58,20 +58,31 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   // Fetching BLOG API
-  const [blogs, setBlogs] = useState([]);
+  
 
   // const {data} = useQuery({
   //   queryKey: ["blogs"],
   //   queryFn: fetchBlogs
   // });
-
+  const [blogs, setBlogs] = useState([]);
   useEffect(()=>{
     axiosSecure.get('/blogs').then(res => setBlogs(res.data))
   })
 
+  const [wishList, setWishList] = useState([]);
+    useEffect(()=>{
+      if(user)
+        axiosSecure.get(`/wishlist?email=${user.email}`).then(res => setWishList(res.data));
+      else
+        axiosSecure.get(`/wishlist`).then(res => setWishList(res.data));
+
+    })
+
   const authInfo = {
     blogs,
     setBlogs,
+    wishList,
+    setWishList,
     user,
     setUser,
     userLoading,

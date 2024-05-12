@@ -8,7 +8,6 @@ import { Element} from 'react-scroll';
 
 const Recentblogs = () => {
    const {blogs} = useContext(AuthContext);
-
   return (
     <div className="relative bg-primary">
       <Divider loc={"top"} />

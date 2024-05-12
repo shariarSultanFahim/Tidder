@@ -9,7 +9,7 @@ const Nav = () => {
   const {user, logOut} = useContext(AuthContext)
 
   const handleLogout = () =>{
-      logOut()
+      logOut();
     }
 
     return (
