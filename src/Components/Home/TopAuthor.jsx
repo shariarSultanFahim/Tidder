@@ -32,15 +32,13 @@ const TopAuthor = () => {
         <div className="py-20 grid grid-cols-1 place-items-center">
             {
                 blogs?
-                blogs.slice(0,1).map(blog => 
-                    <Card className="max-w-sm rounded-3xl">
+                  <Card className="max-w-sm rounded-3xl">
                     <div className="flex flex-col items-center pb-10">
-                      <img className="w-60 h-60 rounded-full overflow-hidden" src={blog.profile_img} alt="" />
-                      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{blog.userName}</h5>
-                      <span className="text-sm text-gray-500 dark:text-gray-400">{blog.email}</span>
+                      <img className="w-60 h-60 rounded-full overflow-hidden" src={blogs[0].profile_img} alt="" />
+                      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">{blogs[0].userName}</h5>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{blogs[0].email}</span>
                     </div>
                   </Card>
-                )
                 :
                 <div className="max-w-sm ">
                     <div className="bg-[#F0F0F0] h-[200px] w-full">

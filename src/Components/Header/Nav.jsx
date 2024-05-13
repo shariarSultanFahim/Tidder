@@ -39,10 +39,11 @@ const Nav = () => {
           <Navbar.Toggle />
           </div>
           :
-          <div className="flex md:order-2 text-white">
+          <div className="flex items-center md:order-2 text-white">
             <Link to='/login' className="hover:underline hover:text-secondary">Login</Link>
             <p>/</p>
             <Link to='/register' className="hover:underline hover:text-secondary">Register</Link>
+            <Navbar.Toggle />
           </div>
         }
         

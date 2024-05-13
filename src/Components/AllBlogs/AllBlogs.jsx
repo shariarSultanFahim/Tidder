@@ -13,7 +13,11 @@ const AllBlogs = () => {
     useDocumentTitle('All Blogs');
     const axiosSecure = useAxiosSecure();
     const {blogs, setBlogs} = useContext(AuthContext);
-    const [filterBlogs, setFilterBlogs] = useState(blogs);
+    const [filterBlogs, setFilterBlogs] = useState(null);
+    
+    useEffect(()=>{
+        setFilterBlogs(blogs);
+    },[blogs])
 
     const handleSearch = async(e) =>{
         e.preventDefault();
@@ -30,7 +34,7 @@ const AllBlogs = () => {
             axiosSecure.get(`/blogs/find?category=${category}`).then(response =>  setFilterBlogs(response.data));
     }
     return (
-        <section> 
+        <section className="md:min-h-screen"> 
             <div className="container mx-auto pt-16 pb-10 flex items-center justify-center">
                 <div className="max-w-md">
                     <Select id="categories" onChange={(e) => handleFilter(e.target.value)}>
@@ -69,23 +73,7 @@ const AllBlogs = () => {
 
             <div className="pb-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 place-items-center">
             {
-                filterBlogs?
-                filterBlogs.map(blog => <BlogCard key={blog._id} blog={blog} />)
-                :
-                Array.from({ length: 3 }).map((blog, idx) => (
-                    <div key={idx} className="max-w-sm ">
-                        <div className="bg-[#F0F0F0] h-[200px] w-full">
-                        </div>
-                        <div className="py-4 flex justify-between">
-                            {<Skeleton width={100}/>}
-                            <div className="flex justify-between gap-2">
-                                {<Skeleton width={50}/>}
-                                {<Skeleton width={50}/>}
-                            </div>
-                        </div>
-                        {<Skeleton count={5}/>}
-                    </div>
-                ))
+                filterBlogs?.map(blog => <BlogCard key={blog._id} blog={blog} />) 
             }
             </div>
         </section>
