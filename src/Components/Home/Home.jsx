@@ -3,6 +3,8 @@ import Divider from "./Divider";
 import Recentblogs from "./Recentblogs";
 import Newslatter from "./Newslatter";
 import { Link,animateScroll as scroll } from 'react-scroll';
+import TopBlogs from "./TopBlogs";
+import TopAuthor from "./TopAuthor";
 
 const Home = () => {
 
@@ -74,6 +76,10 @@ const Home = () => {
           <Recentblogs/>
 
           <Newslatter/>
+
+          <TopBlogs/>
+
+          <TopAuthor/>
 
           
         </div>

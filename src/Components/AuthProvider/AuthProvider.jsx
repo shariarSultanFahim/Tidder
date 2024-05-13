@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
   // });
   const [blogs, setBlogs] = useState([]);
   useEffect(()=>{
-    axiosSecure.get('/blogs').then(res => setBlogs(res.data))
+    axiosSecure.get('/blogs').then(res => setBlogs(res.data.reverse()))
   })
 
   const [wishList, setWishList] = useState([]);
@@ -75,7 +75,6 @@ const AuthProvider = ({ children }) => {
         axiosSecure.get(`/wishlist?email=${user.email}`).then(res => setWishList(res.data));
       else
         axiosSecure.get(`/wishlist`).then(res => setWishList(res.data));
-
     })
 
   const authInfo = {

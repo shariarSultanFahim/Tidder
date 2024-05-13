@@ -36,7 +36,7 @@ const AddBlogs = () => {
             profile_img:profile_img
         }
         try{
-            axiosSecure.post('/blogs',blog);
+            axiosSecure.post(`/blogs?email=${user.email}`,blog);
 
             e.target.reset();
 

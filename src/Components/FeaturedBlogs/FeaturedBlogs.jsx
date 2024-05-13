@@ -86,7 +86,7 @@ const FeaturedBlogs = () => {
             <Table.Body className="divide-y">
               {
                 featuredBlogs.slice(0,10).map((blog, idx)=>
-                  <Table.Row className={(idx%2==0)?'bg-secondary bg-opacity-50':'bg-secondary bg-opacity-30'}>
+                  <Table.Row key={idx} className={(idx%2==0)?'bg-secondary bg-opacity-50':'bg-secondary bg-opacity-30'}>
                     <Table.Cell className="whitespace-nowrap text-center font-medium text-gray-900">
                       {idx+1}
                     </Table.Cell>

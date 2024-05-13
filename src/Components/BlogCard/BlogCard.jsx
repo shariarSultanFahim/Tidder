@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { Card } from "flowbite-react";
 import { Link } from "react-router-dom";
 import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import { motion } from "framer-motion";
@@ -7,6 +6,7 @@ import { useContext, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import {toast, Toaster} from "react-hot-toast"
+import { Tooltip } from "flowbite-react";
 
 const BlogCard = ({ blog }) => {
   
@@ -26,11 +26,6 @@ const BlogCard = ({ blog }) => {
 
 
   const handleWish = () => {
-    if(!user){
-      toast.error('Login to add to wishlist!');
-      return;
-    }
-
     if (!wish) {
       const wishData = {
         blogId:id,
@@ -44,9 +39,8 @@ const BlogCard = ({ blog }) => {
       axiosSecure.post("/wishlist", wishData);
       setWish(true);
     } else {
-      axiosSecure.delete(`/wishlist/remove?id=${id}`);
+      axiosSecure.delete(`/wishlist/remove?id=${id}`).then(res=>console.log(res.data));
       setWish(false);
-      
     }
     
   };
@@ -95,13 +89,19 @@ const BlogCard = ({ blog }) => {
                 Details
               </Link>
               {wish ? (
-                <button onClick={handleWish} className="text-3xl text-red-700">
-                  <IoHeartSharp />
-                </button>
+                  <button onClick={handleWish} className='text-3xl text-red-700'>
+                    <IoHeartSharp />
+                  </button>
               ) : (
-                <button onClick={handleWish} className="text-3xl">
-                  <IoHeartOutline />
-                </button>
+                !user?
+              <Tooltip content="Login to add to wishlist">
+                  <h1 className="text-3xl">
+                    <IoHeartOutline />
+                  </h1>
+              </Tooltip>
+              :<button onClick={handleWish} className="text-3xl">
+              <IoHeartOutline />
+            </button>
               )}
             </div>
           </motion.div>

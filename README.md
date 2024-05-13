@@ -1,7 +1,6 @@
 # Tidder
 
-## Subtitle
-Tidder: A Blogging Platform with User Authentication and Interactivity.
+## Tidder: A Blogging Platform with User Authentication and Interactivity.
 
 ## Features
 1. **Authentication**: Users can create accounts using Google, GitHub, or email.

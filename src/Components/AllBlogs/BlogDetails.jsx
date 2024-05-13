@@ -128,13 +128,6 @@ const BlogDetails = () => {
             (user.email === blog.email) &&
             <Link to={`/blogs/edit/${id}`} className="bg-primary px-2 rounded-lg text-white">Edit Blog</Link>
           }
-          <button className="text-3xl">
-            <IoHeartOutline />
-          </button>
-          <button className="text-3xl text-red-700">
-            <IoHeartSharp />
-          </button>
-          
         </div>
       </div>
       <div className="space-y-4 text-lg">
