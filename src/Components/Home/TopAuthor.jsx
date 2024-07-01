@@ -1,12 +1,12 @@
 
-import Divider from "./Divider";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { Element} from 'react-scroll';
-import { fetchFeaturedBlogs } from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import { Element } from 'react-scroll';
+import { fetchFeaturedBlogs } from "../../Hooks/useAxiosSecure";
+import Divider from "./Divider";
 
-import { Card, Dropdown } from "flowbite-react";
+import { Card } from "flowbite-react";
 
 const TopAuthor = () => {
    const {data:blogs} = useQuery({

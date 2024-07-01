@@ -1,12 +1,10 @@
+import { Select } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
+import 'react-loading-skeleton/dist/skeleton.css';
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useDocumentTitle from "../../Hooks/useDocumentTitle";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import BlogCard from "../BlogCard/BlogCard";
-import {  Select } from "flowbite-react";
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import useAxiosSecure, { fetchBlogs } from "../../Hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 
 
 const AllBlogs = () => {
